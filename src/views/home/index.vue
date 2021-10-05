@@ -28,10 +28,10 @@
                 @load="onLoad"
             >
                 <van-card
-                    price="2.00"
-                    desc="描述信息"
-                    title="商品标题"
-                    :thumb="images[item % 5]"
+                    :price="$store.state.images[item % 5].price"
+                    :desc="$store.state.images[item % 5].author"
+                    :title="$store.state.images[item % 5].title"
+                    :thumb="$store.state.images[item % 5].src"
                     v-for="item in list"
                     :key="item"
                 >
