@@ -12,6 +12,7 @@ const Market = () => import('@/views/shop');
 const Login = () => import('@/views/profile/Login');
 const Register = () => import('@/views/profile/Register');
 
+const Author = () => import('@/views/profile/author');
 const Detail = () => import('@/views/shop/Detail');
 const Purchase = () => import('@/views/shop/Purchase');
 const NewGoods = () => import('@/views/shop/NewGoods');
@@ -52,6 +53,12 @@ export default new VueRouter({
             path: '/detail',
             name: 'Detail',
             component: Detail
+        },
+        // 作者
+        {
+            path: '/author',
+            name: 'Author',
+            component: Author
         },
         // 购买
         {

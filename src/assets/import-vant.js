@@ -5,12 +5,18 @@ import {
     Popup,
     Toast,
     Field,
+    List,
+    Tag,
+    Card,
     Search,
     Loading,
     Lazyload,
     SubmitBar,
     ShareSheet,
+    PullRefresh,
+    Divider,
     Col, Row,
+    Cell, CellGroup,
     Grid, GridItem,
     Swipe, SwipeItem,
     Sidebar, SidebarItem,
@@ -29,6 +35,14 @@ Vue.use(Loading);
 Vue.use(Lazyload);
 Vue.use(SubmitBar);
 Vue.use(ShareSheet);
+Vue.use(Divider);
+Vue.use(List);
+Vue.use(Card);
+Vue.use(Tag);
+Vue.use(PullRefresh);
+
+Vue.use(Cell);
+Vue.use(CellGroup);
 
 Vue.use(Col);
 Vue.use(Row);
