@@ -81,11 +81,16 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .side-bar-item {
     text-align: center;
     font-weight: bolder;
     font-size: 16px;
     line-height: 30px;
+}
+/* 要改 van-nav-bar__title 必须加scoped*/
+#app /deep/ .van-nav-bar__title {
+    font-weight: bold;
+    font-size: 17px;
 }
 </style>
