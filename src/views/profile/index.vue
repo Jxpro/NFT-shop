@@ -6,7 +6,7 @@
         />
         <div class="person-info">
             <van-row type="flex" justify="center" align="center">
-                <van-col span="4">
+                <van-col span="6">
                     <van-button round plain type="info" size="small">
                         认证&nbsp;&nbsp;<i class="fas fa-user-shield"></i
                     ></van-button>
@@ -19,7 +19,7 @@
                         src="https://img01.yzcdn.cn/vant/cat.jpeg"
                     />
                 </van-col>
-                <van-col span="4">
+                <van-col span="6">
                     <van-button round plain type="info" size="small"
                         ><i class="fas fa-file-signature"></i
                         >&nbsp;&nbsp;签到</van-button

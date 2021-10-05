@@ -151,7 +151,13 @@
                     />
                 </van-cell-group>
                 <div class="warn">注意:请注意核实付款价格,谨慎付款。</div>
-                <van-button type="danger" block round>确认购买</van-button>
+                <div style="display: flex;justify-content: center;">
+                    <div style="width:90%">
+                        <van-button type="danger" block round
+                            >确认购买</van-button
+                        >
+                    </div>
+                </div>
             </van-popup>
         </div>
     </div>
@@ -179,7 +185,12 @@ export default {
             this.showShare = false;
         },
         onClickButton() {
-            this.show = true;
+            if (!localStorage.getItem('user')) {
+                Toast('请登录');
+                this.$router.push('/Login');
+            } else {
+                this.show = true;
+            }
         },
     },
 };
