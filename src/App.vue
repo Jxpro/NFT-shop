@@ -33,24 +33,32 @@
                     is-link
                     center
                     title-class="side-bar-item"
+                    to="home"
+                    @click="showPopup"
                 />
                 <van-cell
                     title="新品"
                     is-link
                     center
                     title-class="side-bar-item"
+                    to="new_goods"
+                    @click="showPopup"
                 />
                 <van-cell
                     title="市场"
                     is-link
                     center
                     title-class="side-bar-item"
+                    to="market"
+                    @click="showPopup"
                 />
                 <van-cell
                     title="关于"
                     is-link
                     center
                     title-class="side-bar-item"
+                    to="about"
+                    @click="showPopup"
                 />
             </van-cell-group>
         </van-popup>
@@ -74,7 +82,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .side-bar-item {
     text-align: center;
     font-weight: bolder;
@@ -84,5 +92,8 @@ export default {
 #reset-nav-bar /deep/ .van-nav-bar__title {
     font-weight: bold;
     font-size: 17px;
+}
+.sub-components {
+    margin-top: 50px;
 }
 </style>
