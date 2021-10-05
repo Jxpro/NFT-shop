@@ -108,6 +108,51 @@
                 :options="options"
                 @select="onSelect"
             />
+
+            <van-popup
+                v-model="show"
+                position="bottom"
+                closeable
+                style="height: 60%; margin-top: 46px"
+                :overlay-style="{ 'margin-top': '46px' }"
+            >
+                <h3 style="text-align: center;">订单信息</h3>
+                <van-cell-group>
+                    <div class="cell-wrapper">
+                        <van-cell
+                            title="存储账户"
+                            label="0xc1b******e33"
+                            style="background-color: #F0F0F0;"
+                        />
+                    </div>
+                    <van-cell title="存储账户" label="0xc1b******e33">
+                        <template #icon>
+                            <van-image
+                                width="80"
+                                height="80"
+                                :src="$route.query.src"
+                            />
+                        </template>
+                        <template #title>
+                            <h2 class="title">{{ $route.query.title }}</h2>
+                        </template>
+                        <template #label>
+                            <div class="label-wrapper">
+                                <div>ID: {{ $route.query.id }}</div>
+                                <div>￥ {{ $route.query.price }}</div>
+                            </div>
+                        </template>
+                    </van-cell>
+                    <van-cell
+                        :title="`余额支付：￥ ${$route.query.price}`"
+                        value="余额:￥0.00"
+                        title-class="title-class-extra"
+                        value-class="value-class-extra"
+                    />
+                </van-cell-group>
+                <div class="warn">注意:请注意核实付款价格,谨慎付款。</div>
+                <van-button type="danger" block round>确认购买</van-button>
+            </van-popup>
         </div>
     </div>
 </template>
@@ -125,6 +170,7 @@ export default {
                 { name: '分享海报', icon: 'poster' },
                 { name: '二维码', icon: 'qrcode' },
             ],
+            show: false,
         };
     },
     methods: {
@@ -132,7 +178,9 @@ export default {
             Toast(option.name);
             this.showShare = false;
         },
-        onClickButton() {},
+        onClickButton() {
+            this.show = true;
+        },
     },
 };
 </script>
@@ -140,5 +188,36 @@ export default {
 <style>
 .wrapper {
     padding: 0 5%;
+}
+.puchase-wrapper {
+    text-align: center;
+}
+.cell-wrapper {
+    margin: 0 0.5em;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.warn {
+    color: red;
+    margin: 0.8em;
+}
+h2.title {
+    margin-left: 1em;
+    margin-top: 0;
+    margin-bottom: 1.6em;
+}
+.label-wrapper {
+    margin-left: 1em;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.title-class-extra {
+    margin: 0.5em 0;
+    font-size: 16px;
+}
+.value-class-extra {
+    margin: 0.5em 0;
+    font-size: 16px;
 }
 </style>

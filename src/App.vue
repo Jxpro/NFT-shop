@@ -53,6 +53,15 @@
                     @click="showPopup"
                 />
                 <van-cell
+                    title="我的"
+                    is-link
+                    center
+                    title-class="side-bar-item"
+                    to="profile"
+                    v-if="$store.state.loging"
+                    @click="showPopup"
+                />
+                <van-cell
                     title="关于"
                     is-link
                     center

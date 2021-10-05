@@ -15,7 +15,6 @@ const Register = () => import('@/views/profile/Register');
 
 const Author = () => import('@/views/profile/author');
 const Detail = () => import('@/views/shop/Detail');
-const Purchase = () => import('@/views/shop/Purchase');
 const NewGoods = () => import('@/views/shop/NewGoods');
 
 
@@ -68,16 +67,6 @@ const router = new VueRouter({
             name: 'Author',
             component: Author
         },
-        // 购买
-        {
-            path: '/purchase',
-            name: 'Purchase',
-            component: Purchase,
-            meta: {
-                requireAuth: true
-            }
-        },
-
         // 个人信息
         {
             path: '/profile',
