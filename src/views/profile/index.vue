@@ -1,5 +1,5 @@
 <template>
-    <div style="background-color:#F0F0F0;">
+    <div>
         <van-notice-bar
             left-icon="volume-o"
             text="薛之谦（Joker Xue），1983年7月17日出生于上海市，中国内地流行乐男歌手、音乐制作人、影视演员，毕业于格里昂酒店管理学院"
@@ -43,12 +43,12 @@
             </div>
             <div class="line"></div>
             <div class="msg-wapper">
-                <div class="msg-nums">0</div>
+                <div class="msg-nums">99</div>
                 <div class="msg-type">我的积分</div>
             </div>
             <div class="line"></div>
             <div class="msg-wapper">
-                <div class="msg-nums">0</div>
+                <div class="msg-nums">￥{{ $store.state.balance }}</div>
                 <div class="msg-type">我的余额</div>
             </div>
         </div>
@@ -81,6 +81,39 @@
                 </p>
             </van-grid-item>
         </van-grid>
+
+        <van-list
+            v-model="loading"
+            :finished="finished"
+            finished-text="没有更多了"
+            @load="onLoad"
+        >
+            <van-card
+                :price="goods.price"
+                :thumb="goods.src"
+                v-for="(goods, index) in list"
+                :key="index"
+            >
+                <template #title>
+                    <h2 style="margin-top:0">{{ goods.title }}</h2>
+                </template>
+                <template #tags>
+                    <van-tag plain type="danger">标签</van-tag>
+                    <van-tag plain type="danger">标签</van-tag>
+                </template>
+                <template #footer>
+                    <van-button
+                        size="small"
+                        round
+                        plain
+                        hairline
+                        type="danger"
+                        @click="clearItem(index)"
+                        >删除
+                    </van-button>
+                </template>
+            </van-card>
+        </van-list>
     </div>
 </template>
 
@@ -89,22 +122,41 @@ export default {
     data() {
         return {
             accessKey: 0,
+            loading: false,
+            finished: false,
+            refreshing: false,
         };
     },
     computed: {
         username() {
             return JSON.parse(localStorage.getItem('user')).username;
         },
+        list() {
+            return this.accessKey === 0 ? this.$store.state.boughtlist : [];
+        },
     },
     methods: {
         changeaccessKey(k) {
             this.accessKey = k;
         },
+        onLoad() {
+            // 异步更新数据
+            // setTimeout 仅做示例，真实场景中一般为 ajax 请求
+            setTimeout(() => {
+                for (let i = 0; i < 10; i++) {
+                    this.loading = false;
+                    this.finished = true;
+                }
+            }, 1000);
+        },
+        clearItem(i) {
+            this.$store.state.boughtlist.splice(i, 1);
+        },
     },
 };
 </script>
 
-<style>
+<style scoped>
 .person-info {
     padding: 0.5em 0;
     background-color: white;
@@ -118,6 +170,7 @@ p {
     justify-content: space-between;
     align-items: center;
     height: 80px;
+    background-color: #f0f0f0;
 }
 
 .msg-wapper {
@@ -146,5 +199,8 @@ p.options {
 
 p.active {
     font-weight: bolder;
+}
+div /deep/ .van-button.van-button--danger.van-button--small {
+    width: 10em;
 }
 </style>

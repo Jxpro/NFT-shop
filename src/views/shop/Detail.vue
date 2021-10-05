@@ -89,6 +89,8 @@
                 成交记录
             </van-divider>
 
+            <div class="placeholder"></div>
+
             <van-goods-action>
                 <van-goods-action-icon text="分享" @click="showShare = true">
                     <template #icon>
@@ -98,7 +100,7 @@
                 <van-goods-action-button
                     type="danger"
                     text="立即购买"
-                    @click="onClickButton"
+                    @click="onClickBuyButton"
                 />
             </van-goods-action>
 
@@ -145,7 +147,7 @@
                     </van-cell>
                     <van-cell
                         :title="`余额支付：￥ ${$route.query.price}`"
-                        value="余额:￥0.00"
+                        :value="`余额:￥ ${this.$store.state.balance}`"
                         title-class="title-class-extra"
                         value-class="value-class-extra"
                     />
@@ -153,7 +155,11 @@
                 <div class="warn">注意:请注意核实付款价格,谨慎付款。</div>
                 <div style="display: flex;justify-content: center;">
                     <div style="width:90%">
-                        <van-button type="danger" block round
+                        <van-button
+                            type="danger"
+                            block
+                            round
+                            @click="onClickVertifyButton($route.query)"
                             >确认购买</van-button
                         >
                     </div>
@@ -184,12 +190,23 @@ export default {
             Toast(option.name);
             this.showShare = false;
         },
-        onClickButton() {
+        onClickBuyButton() {
             if (!localStorage.getItem('user')) {
                 Toast('请登录');
                 this.$router.push('/Login');
             } else {
                 this.show = true;
+            }
+        },
+        onClickVertifyButton(item) {
+            if (item.price <= this.$store.state.balance) {
+                this.$store.state.boughtlist.push(item);
+                this.$store.state.balance -= item.price;
+                this.show = false;
+                Toast('购买成功');
+            } else {
+                this.show = false;
+                Toast('余额不足');
             }
         },
     },
@@ -230,5 +247,9 @@ h2.title {
 .value-class-extra {
     margin: 0.5em 0;
     font-size: 16px;
+}
+.placeholder {
+    height: 50px;
+    background-color: transparent;
 }
 </style>

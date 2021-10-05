@@ -79,7 +79,9 @@ const state = {
             author: '薛之谦',
             address: 'xxx-xxx-xxxx'
         }
-    ]
+    ],
+    boughtlist: [],
+    balance: 1000
 };
 
 //创建并暴露store
