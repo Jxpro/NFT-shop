@@ -60,6 +60,15 @@
                     to="about"
                     @click="showPopup"
                 />
+                <van-cell
+                    title="退出"
+                    is-link
+                    center
+                    title-class="side-bar-item"
+                    to="home"
+                    v-if="$store.state.loging"
+                    @click="exituser"
+                />
             </van-cell-group>
         </van-popup>
         <router-view></router-view>
@@ -67,6 +76,7 @@
 </template>
 
 <script>
+import { Toast } from 'vant';
 export default {
     name: 'App',
     data() {
@@ -74,12 +84,21 @@ export default {
             leftshow: false,
         };
     },
+    created() {
+        this.$store.state.loging = localStorage.getItem('user');
+    },
     methods: {
         showPopup() {
             this.leftshow = !this.leftshow;
         },
         goProflie() {
             this.$router.push('/profile');
+        },
+        exituser() {
+            localStorage.removeItem('user');
+            this.leftshow = !this.leftshow;
+            this.$store.state.loging = false;
+            Toast('退出成功');
         },
     },
 };

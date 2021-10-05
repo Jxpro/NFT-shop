@@ -37,7 +37,11 @@
                             @click="visitAuthor"
                             >by {{ goods.author }}
                         </van-button>
-                        <van-button round size="small" type="warning"
+                        <van-button
+                            round
+                            size="small"
+                            type="warning"
+                            @click="goPurchase(goods)"
                             >立即购买
                         </van-button>
                     </template>
@@ -101,6 +105,12 @@ export default {
     methods: {
         visitAuthor() {
             this.$router.push('/author');
+        },
+        goPurchase(img) {
+            this.$router.push({
+                name: 'Detail',
+                query: img,
+            });
         },
         onLoad() {
             setTimeout(() => {

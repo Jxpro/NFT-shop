@@ -23,6 +23,7 @@ const mutations = {
 };
 //准备state——用于存储数据
 const state = {
+    loging: '',
     images: [
         {
             id: '001',
@@ -30,7 +31,8 @@ const state = {
             title: '火山',
             price: 199,
             sold: 100,
-            author: '薛之谦'
+            author: '薛之谦',
+            address: 'xxx-xxx-xxxx'
         },
         {
             id: '002',
@@ -38,7 +40,8 @@ const state = {
             title: '流浪地球',
             price: 299,
             sold: 150,
-            author: '薛之谦'
+            author: '薛之谦',
+            address: 'xxx-xxx-xxxx'
         },
         {
             id: '003',
@@ -46,7 +49,8 @@ const state = {
             title: '猛虎上山',
             price: 189,
             sold: 299,
-            author: '薛之谦'
+            author: '薛之谦',
+            address: 'xxx-xxx-xxxx'
         },
         {
             id: '004',
@@ -54,7 +58,8 @@ const state = {
             title: '猛虎下山',
             price: 249,
             sold: 399,
-            author: '薛之谦'
+            author: '薛之谦',
+            address: 'xxx-xxx-xxxx'
         },
         {
             id: '005',
@@ -62,7 +67,8 @@ const state = {
             title: '战神阿瑞斯',
             price: 29,
             sold: 699,
-            author: '薛之谦'
+            author: '薛之谦',
+            address: 'xxx-xxx-xxxx'
         },
         {
             id: '006',
@@ -70,7 +76,8 @@ const state = {
             title: '孙悟空',
             price: 749,
             sold: 79,
-            author: '薛之谦'
+            author: '薛之谦',
+            address: 'xxx-xxx-xxxx'
         }
     ]
 };

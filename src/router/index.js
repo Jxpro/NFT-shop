@@ -58,7 +58,7 @@ const router = new VueRouter({
         },
         // 详情
         {
-            path: '/detail',
+            path: '/detail/:img',
             name: 'Detail',
             component: Detail
         },
@@ -104,7 +104,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {
         if (!localStorage.getItem('user')) {
-            Toast('请先登录');
+            Toast('请登录');
             next({ name: 'Login' });
         }
     }

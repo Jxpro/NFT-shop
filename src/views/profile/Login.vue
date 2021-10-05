@@ -67,6 +67,7 @@ export default {
             }
             Toast('登陆成功');
             this.$router.push('/profile');
+            this.$store.state.loging = true;
         },
         jumpRegister() {
             this.$router.push('/register');
