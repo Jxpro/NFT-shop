@@ -1,31 +1,30 @@
 <template>
     <div id="app">
-        <div id="reset-nav-bar">
-            <van-nav-bar
-                title="NFT Shop"
-                @click-left="showPopup"
-                left-arrow
-                fixed
-                style="z-index:999999;height:50px;"
-            >
-                <template #left>
-                    <i
-                        class="fas fa-list-ul"
-                        style="font-size:1.6em;color:rgb(63, 62, 62)"
-                    ></i>
-                </template>
-                <template #right>
-                    <i
-                        class="fas fa-user-circle"
-                        style="font-size:1.8em;color:rgb(63, 62, 62)"
-                    ></i>
-                </template>
-            </van-nav-bar>
-        </div>
+        <van-nav-bar
+            title="NFT Shop"
+            @click-left="showPopup"
+            left-arrow
+            fixed
+            placeholder
+        >
+            <template #left>
+                <i
+                    class="fas fa-list-ul"
+                    style="font-size:1.6em;color:rgb(63, 62, 62)"
+                ></i>
+            </template>
+            <template #right>
+                <i
+                    class="fas fa-user-circle"
+                    style="font-size:1.8em;color:rgb(63, 62, 62)"
+                ></i>
+            </template>
+        </van-nav-bar>
         <van-popup
             v-model="leftshow"
             position="left"
-            style="width: 60%; height: 100%; margin-top: 50px"
+            style="width: 60%; height: 100%; margin-top: 46px"
+            :overlay-style="{ 'margin-top': '46px' }"
         >
             <van-cell-group inset>
                 <van-cell
@@ -88,12 +87,5 @@ export default {
     font-weight: bolder;
     font-size: 16px;
     line-height: 30px;
-}
-#reset-nav-bar /deep/ .van-nav-bar__title {
-    font-weight: bold;
-    font-size: 17px;
-}
-.sub-components {
-    margin-top: 50px;
 }
 </style>
