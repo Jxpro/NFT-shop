@@ -3,6 +3,7 @@
         <van-nav-bar
             title="NFT Shop"
             @click-left="showPopup"
+            @click-right="goProflie"
             left-arrow
             fixed
             placeholder
@@ -76,6 +77,9 @@ export default {
     methods: {
         showPopup() {
             this.leftshow = !this.leftshow;
+        },
+        goProflie() {
+            this.$router.push('/profile');
         },
     },
 };

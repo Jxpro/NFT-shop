@@ -15,6 +15,7 @@ import {
     ShareSheet,
     PullRefresh,
     Divider,
+    NoticeBar,
     Col, Row,
     Cell, CellGroup,
     Grid, GridItem,
@@ -40,6 +41,7 @@ Vue.use(List);
 Vue.use(Card);
 Vue.use(Tag);
 Vue.use(PullRefresh);
+Vue.use(NoticeBar);
 
 Vue.use(Cell);
 Vue.use(CellGroup);

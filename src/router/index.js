@@ -1,6 +1,7 @@
 // 该文件专门用于创建整个应用的路由器
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import { Toast } from 'vant';
 
 Vue.use(VueRouter);
 
@@ -17,8 +18,15 @@ const Detail = () => import('@/views/shop/Detail');
 const Purchase = () => import('@/views/shop/Purchase');
 const NewGoods = () => import('@/views/shop/NewGoods');
 
+
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location, onResolve, onReject) {
+    if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject);
+    return originalPush.call(this, location).catch(err => err);
+};
+
 //创建并暴露一个路由器
-export default new VueRouter({
+const router = new VueRouter({
     routes: [
         // 主页
         {
@@ -93,3 +101,14 @@ export default new VueRouter({
         },
     ]
 });
+router.beforeEach((to, from, next) => {
+    if (to.meta.requireAuth) {
+        if (!localStorage.getItem('user')) {
+            Toast('请先登录');
+            next({ name: 'Login' });
+        }
+    }
+    next();
+});
+
+export default router;

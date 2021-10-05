@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin-top:8px">
         <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
             <van-list
                 v-model="loading"
@@ -9,7 +9,7 @@
             >
                 <van-card
                     :price="$store.state.images[item % 5].price"
-                    :desc="$store.state.images[item % 5].author"
+                    :desc="`已售${$store.state.images[item % 5].sold}件`"
                     :title="$store.state.images[item % 5].title"
                     :thumb="$store.state.images[item % 5].src"
                     v-for="item in list"
@@ -20,8 +20,12 @@
                         <van-tag plain type="danger">标签</van-tag>
                     </template>
                     <template #footer>
-                        <van-button round size="small" type="primary"
-                            >NFT 艺术家
+                        <van-button
+                            round
+                            size="small"
+                            type="primary"
+                            @click="visitAuthor"
+                            >by {{ $store.state.images[item % 5].author }}
                         </van-button>
                         <van-button round size="small" type="warning"
                             >立即购买
@@ -44,6 +48,9 @@ export default {
         };
     },
     methods: {
+        visitAuthor() {
+            this.$router.push('/author');
+        },
         onLoad() {
             setTimeout(() => {
                 if (this.refreshing) {

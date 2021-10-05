@@ -1,9 +1,150 @@
 <template>
-    <div></div>
+    <div style="background-color:#F0F0F0;">
+        <van-notice-bar
+            left-icon="volume-o"
+            text="薛之谦（Joker Xue），1983年7月17日出生于上海市，中国内地流行乐男歌手、音乐制作人、影视演员，毕业于格里昂酒店管理学院"
+        />
+        <div class="person-info">
+            <van-row type="flex" justify="center" align="center">
+                <van-col span="4">
+                    <van-button round plain type="info" size="small">
+                        认证&nbsp;&nbsp;<i class="fas fa-user-shield"></i
+                    ></van-button>
+                </van-col>
+                <van-col span="10" style="  text-align: center;">
+                    <van-image
+                        width="120"
+                        height="120"
+                        round
+                        src="https://img01.yzcdn.cn/vant/cat.jpeg"
+                    />
+                </van-col>
+                <van-col span="4">
+                    <van-button round plain type="info" size="small"
+                        ><i class="fas fa-file-signature"></i
+                        >&nbsp;&nbsp;签到</van-button
+                    >
+                </van-col>
+            </van-row>
+            <p>
+                {{ `用户名：${username} (213***364)` }}
+                <i class="fas fa-user-edit"></i>
+            </p>
+            <p>
+                {{ `ID：Oxc1b***493ee` }}
+                <i class="fas fa-copy"></i>
+            </p>
+        </div>
+
+        <div class="top-wapper">
+            <div class="msg-wapper">
+                <div class="msg-nums">0</div>
+                <div class="msg-type">邀请好友</div>
+            </div>
+            <div class="line"></div>
+            <div class="msg-wapper">
+                <div class="msg-nums">0</div>
+                <div class="msg-type">我的积分</div>
+            </div>
+            <div class="line"></div>
+            <div class="msg-wapper">
+                <div class="msg-nums">0</div>
+                <div class="msg-type">我的余额</div>
+            </div>
+        </div>
+        <van-grid :border="false" :column-num="3">
+            <van-grid-item>
+                <p
+                    class="options"
+                    :class="{ active: accessKey === 0 }"
+                    @click="changeaccessKey(0)"
+                >
+                    已购买
+                </p>
+            </van-grid-item>
+            <van-grid-item>
+                <p
+                    class="options"
+                    :class="{ active: accessKey === 1 }"
+                    @click="changeaccessKey(1)"
+                >
+                    已卖出
+                </p>
+            </van-grid-item>
+            <van-grid-item>
+                <p
+                    class="options"
+                    :class="{ active: accessKey === 2 }"
+                    @click="changeaccessKey(2)"
+                >
+                    挂售中
+                </p>
+            </van-grid-item>
+        </van-grid>
+    </div>
 </template>
 
 <script>
-export default {};
+export default {
+    data() {
+        return {
+            accessKey: 0,
+        };
+    },
+    computed: {
+        username() {
+            return JSON.parse(localStorage.getItem('user')).username;
+        },
+    },
+    methods: {
+        changeaccessKey(k) {
+            this.accessKey = k;
+        },
+    },
+};
 </script>
 
-<style></style>
+<style>
+.person-info {
+    padding: 0.5em 0;
+    background-color: white;
+    text-align: center;
+}
+p {
+    color: #666666;
+}
+.top-wapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.msg-wapper {
+    text-align: center;
+    width: 30%;
+    padding: 1em 0;
+}
+
+.msg-wapper .msg-nums {
+    font-size: 20px;
+    margin-bottom: 0.3em;
+}
+.msg-wapper .msg-type {
+    color: #666;
+}
+
+.line {
+    height: 50px;
+    border-left: solid #dadada 1px;
+}
+
+p.options {
+    margin-top: 0.3em;
+    font-size: 20px;
+}
+
+p.active {
+    font-weight: bolder;
+}
+</style>

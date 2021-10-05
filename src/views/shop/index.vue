@@ -19,7 +19,7 @@
             >
                 <van-card
                     :price="goods.price"
-                    :desc="goods.author"
+                    :desc="`已售${goods.sold}件`"
                     :title="goods.title"
                     :thumb="goods.src"
                     v-for="goods in goodslist"
@@ -30,8 +30,12 @@
                         <van-tag plain type="danger">标签</van-tag>
                     </template>
                     <template #footer>
-                        <van-button round size="small" type="primary"
-                            >NFT 艺术家
+                        <van-button
+                            round
+                            size="small"
+                            type="primary"
+                            @click="visitAuthor"
+                            >by {{ goods.author }}
                         </van-button>
                         <van-button round size="small" type="warning"
                             >立即购买
@@ -95,6 +99,9 @@ export default {
         },
     },
     methods: {
+        visitAuthor() {
+            this.$router.push('/author');
+        },
         onLoad() {
             setTimeout(() => {
                 if (this.refreshing) {

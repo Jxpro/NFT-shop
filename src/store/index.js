@@ -30,7 +30,7 @@ const state = {
             title: '火山',
             price: 199,
             sold: 100,
-            author: 'NFT'
+            author: '薛之谦'
         },
         {
             id: '002',
@@ -38,7 +38,7 @@ const state = {
             title: '流浪地球',
             price: 299,
             sold: 150,
-            author: 'NFT'
+            author: '薛之谦'
         },
         {
             id: '003',
@@ -46,7 +46,7 @@ const state = {
             title: '猛虎上山',
             price: 189,
             sold: 299,
-            author: 'NFT'
+            author: '薛之谦'
         },
         {
             id: '004',
@@ -54,7 +54,7 @@ const state = {
             title: '猛虎下山',
             price: 249,
             sold: 399,
-            author: 'NFT'
+            author: '薛之谦'
         },
         {
             id: '005',
@@ -62,7 +62,7 @@ const state = {
             title: '战神阿瑞斯',
             price: 29,
             sold: 699,
-            author: 'NFT'
+            author: '薛之谦'
         },
         {
             id: '006',
@@ -70,7 +70,7 @@ const state = {
             title: '孙悟空',
             price: 749,
             sold: 79,
-            author: 'NFT'
+            author: '薛之谦'
         }
     ]
 };
