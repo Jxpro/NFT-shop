@@ -11,7 +11,7 @@
                         </span>
                     </template>
                 </van-cell>
-                <van-cell is-link>
+                <van-cell is-link to="author">
                     <!-- 使用 title 插槽来自定义标题 -->
                     <template #title>
                         <span class="custom-title"

@@ -57,7 +57,7 @@ const router = new VueRouter({
         },
         // 详情
         {
-            path: '/detail/:img',
+            path: '/detail',
             name: 'Detail',
             component: Detail
         },
