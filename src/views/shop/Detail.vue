@@ -192,7 +192,7 @@ export default {
         },
         onClickBuyButton() {
             if (!localStorage.getItem('user')) {
-                Toast('请登录');
+                Toast('请先登录');
                 this.$router.push('/Login');
             } else {
                 this.show = true;

@@ -93,7 +93,6 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {
         if (!localStorage.getItem('user')) {
-            Toast('请登录');
             next({ name: 'Login' });
         }
     }
