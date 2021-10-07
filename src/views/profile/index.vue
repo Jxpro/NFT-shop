@@ -108,7 +108,7 @@
                         plain
                         hairline
                         type="danger"
-                        @click="sellItem(index)"
+                        @click.stop="sellItem(index)"
                         >出售
                     </van-button>
                 </template>
@@ -127,16 +127,15 @@
                 v-model="price"
                 label="挂售价格"
                 placeholder="请输入价格"
+                label-class="b-space"
             />
-            <div
-                style="display: flex;justify-content: center;margin-top: .5em;"
-            >
+            <div style="display: flex;justify-content: center;">
                 <div style="width:90%">
                     <van-button
                         type="danger"
                         block
                         round
-                        @click="onClickVertifyButton()"
+                        @click="onClickVertifyButton"
                         >立即出售</van-button
                     >
                 </div>
@@ -198,12 +197,14 @@ export default {
             this.sellIndex = i;
         },
         onClickVertifyButton() {
-            Toast('已添加到挂售中，请查看');
-            this.show = false;
-            this.$store.state.selllist.push({
-                ...this.$store.state.boughtlist[this.sellIndex],
-                price: this.price,
-            });
+            if (this.price !== '0') {
+                Toast('已添加至挂售中');
+                this.show = false;
+                this.$store.state.selllist.push({
+                    ...this.$store.state.boughtlist[this.sellIndex],
+                    price: this.price,
+                });
+            }
         },
     },
 };
@@ -252,6 +253,19 @@ p.options {
 
 p.active {
     font-weight: bolder;
+}
+
+div /deep/ .b-space {
+    padding-bottom: 0.5em;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+div /deep/ .van-field__control {
+    padding-bottom: 0.5em;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.5em;
 }
 div /deep/ .van-button.van-button--danger.van-button--small {
     width: 10em;
