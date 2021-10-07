@@ -86,6 +86,7 @@
 
 <script>
 import { Toast } from 'vant';
+import axios from 'axios';
 export default {
     name: 'App',
     data() {
@@ -95,6 +96,7 @@ export default {
     },
     created() {
         this.$store.state.loging = localStorage.getItem('user');
+        axios.get('http://localhost:5000/students');
     },
     methods: {
         showPopup() {
