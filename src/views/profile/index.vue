@@ -109,7 +109,7 @@
                         hairline
                         type="danger"
                         @click="clearItem(index)"
-                        >删除
+                        >出售
                     </van-button>
                 </template>
             </van-card>
@@ -118,6 +118,7 @@
 </template>
 
 <script>
+import { Toast } from 'vant';
 export default {
     data() {
         return {
@@ -132,7 +133,19 @@ export default {
             return JSON.parse(localStorage.getItem('user')).username;
         },
         list() {
-            return this.accessKey === 0 ? this.$store.state.boughtlist : [];
+            let result = [];
+            // return this.accessKey === 0 ? this.$store.state.boughtlist : [];
+            switch (this.accessKey) {
+                case 0:
+                    result = this.$store.state.boughtlist;
+                    break;
+                case 2:
+                    result = this.$store.state.selllist;
+                    break;
+                default:
+                    break;
+            }
+            return result;
         },
     },
     methods: {
@@ -150,7 +163,8 @@ export default {
             }, 1000);
         },
         clearItem(i) {
-            this.$store.state.boughtlist.splice(i, 1);
+            Toast('已添加到挂售中，请查看');
+            this.$store.state.selllist.push(this.$store.state.boughtlist[i]);
         },
     },
 };

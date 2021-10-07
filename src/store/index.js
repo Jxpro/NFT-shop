@@ -81,6 +81,7 @@ const state = {
         }
     ],
     boughtlist: [],
+    selllist: [],
     balance: 1000
 };
 
