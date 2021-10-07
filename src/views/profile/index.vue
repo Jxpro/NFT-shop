@@ -108,12 +108,40 @@
                         plain
                         hairline
                         type="danger"
-                        @click="clearItem(index)"
+                        @click="sellItem(index)"
                         >出售
                     </van-button>
                 </template>
             </van-card>
         </van-list>
+        <van-popup
+            v-model="show"
+            position="bottom"
+            closeable
+            style="height: 33%; margin-top: 46px"
+            :overlay-style="{ 'margin-top': '46px' }"
+        >
+            <h3 style="text-align: center;">挂售价格</h3>
+            <div class="warn">&nbsp;注意: 请合理填写价格</div>
+            <van-field
+                v-model="price"
+                label="挂售价格"
+                placeholder="请输入价格"
+            />
+            <div
+                style="display: flex;justify-content: center;margin-top: .5em;"
+            >
+                <div style="width:90%">
+                    <van-button
+                        type="danger"
+                        block
+                        round
+                        @click="onClickVertifyButton()"
+                        >立即出售</van-button
+                    >
+                </div>
+            </div>
+        </van-popup>
     </div>
 </template>
 
@@ -126,6 +154,9 @@ export default {
             loading: false,
             finished: false,
             refreshing: false,
+            show: false,
+            sellIndex: 0,
+            price: 0,
         };
     },
     computed: {
@@ -162,9 +193,17 @@ export default {
                 }
             }, 1000);
         },
-        clearItem(i) {
+        sellItem(i) {
+            this.show = true;
+            this.sellIndex = i;
+        },
+        onClickVertifyButton() {
             Toast('已添加到挂售中，请查看');
-            this.$store.state.selllist.push(this.$store.state.boughtlist[i]);
+            this.show = false;
+            this.$store.state.selllist.push({
+                ...this.$store.state.boughtlist[this.sellIndex],
+                price: this.price,
+            });
         },
     },
 };
