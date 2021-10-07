@@ -109,7 +109,7 @@
                         hairline
                         type="danger"
                         @click.stop="sellItem(index)"
-                        >出售
+                        >{{ btntext }}
                     </van-button>
                 </template>
             </van-card>
@@ -159,6 +159,20 @@ export default {
         };
     },
     computed: {
+        btntext() {
+            let text = '按钮';
+            switch (this.accessKey) {
+                case 0:
+                    text = '出售';
+                    break;
+                case 2:
+                    text = '取消';
+                    break;
+                default:
+                    break;
+            }
+            return text;
+        },
         username() {
             return JSON.parse(localStorage.getItem('user')).username;
         },
@@ -193,8 +207,13 @@ export default {
             }, 1000);
         },
         sellItem(i) {
-            this.show = true;
-            this.sellIndex = i;
+            if (this.accessKey === 0) {
+                this.show = true;
+                this.sellIndex = i;
+            } else {
+                Toast('取消成功');
+                this.$store.state.selllist.splice(i, 1);
+            }
         },
         onClickVertifyButton() {
             if (this.price !== '0') {
